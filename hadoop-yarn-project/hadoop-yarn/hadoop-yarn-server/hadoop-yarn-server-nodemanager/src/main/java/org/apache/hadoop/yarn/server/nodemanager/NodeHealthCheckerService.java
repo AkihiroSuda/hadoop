@@ -18,9 +18,12 @@
 
 package org.apache.hadoop.yarn.server.nodemanager;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.service.CompositeService;
 import org.apache.hadoop.util.NodeHealthScriptRunner;
+import org.apache.hadoop.yarn.conf.YarnConfiguration;
 
 /**
  * The class which provides functionality of checking the health of the node and
@@ -28,9 +31,12 @@ import org.apache.hadoop.util.NodeHealthScriptRunner;
  * report.
  */
 public class NodeHealthCheckerService extends CompositeService {
+  private static final Log LOG = LogFactory.getLog(NodeHealthCheckerService.class);
 
   private NodeHealthScriptRunner nodeHealthScriptRunner;
   private LocalDirsHandlerService dirsHandler;
+  private long diskHealthCheckInterval;
+  private long diskHealthCheckTimeout;
 
   static final String SEPARATOR = ";";
 
@@ -47,6 +53,12 @@ public class NodeHealthCheckerService extends CompositeService {
       addService(nodeHealthScriptRunner);
     }
     addService(dirsHandler);
+    this.diskHealthCheckInterval =
+        conf.getLong(YarnConfiguration.NM_DISK_HEALTH_CHECK_INTERVAL_MS,
+            YarnConfiguration.DEFAULT_NM_DISK_HEALTH_CHECK_INTERVAL_MS);
+    this.diskHealthCheckTimeout =
+        conf.getLong(YarnConfiguration.NM_DISK_HEALTH_CHECK_TIMEOUT_MS,
+            YarnConfiguration.DEFAULT_NM_DISK_HEALTH_CHECK_TIMEOUT_MS);
     super.serviceInit(conf);
   }
 
@@ -63,13 +75,35 @@ public class NodeHealthCheckerService extends CompositeService {
     }
   }
 
+  private boolean areDisksCheckedInModerateTime() {
+    long diskCheckTime = dirsHandler.getLastDisksCheckTime();
+    long now = System.currentTimeMillis();
+    long gap = now - diskCheckTime;
+    if (gap < 0) {
+      throw new AssertionError("implementation error - now=" + now
+          + ", diskCheckTime=" + diskCheckTime);
+    }
+    long allowedGap = this.diskHealthCheckInterval + this.diskHealthCheckTimeout;
+    if (allowedGap <= 0) {
+      throw new AssertionError("implementation error - interval=" + this.diskHealthCheckInterval
+          + ", timeout=" + this.diskHealthCheckTimeout);
+    }
+    boolean moderate = gap < allowedGap;
+    if (!moderate) {
+      LOG.warn("the disk seems too slow. gap=" + gap + " (should be less than " + allowedGap + ")");
+    }
+    return moderate;
+  }
+
   /**
    * @return <em>true</em> if the node is healthy
    */
   boolean isHealthy() {
     boolean scriptHealthStatus = (nodeHealthScriptRunner == null) ? true
         : nodeHealthScriptRunner.isHealthy();
-    return scriptHealthStatus && dirsHandler.areDisksHealthy();
+    boolean diskHealthStatus = dirsHandler.areDisksHealthy();
+    boolean diskHealthTimeStatus = areDisksCheckedInModerateTime();
+    return scriptHealthStatus && diskHealthStatus && diskHealthTimeStatus;
   }
 
   /**

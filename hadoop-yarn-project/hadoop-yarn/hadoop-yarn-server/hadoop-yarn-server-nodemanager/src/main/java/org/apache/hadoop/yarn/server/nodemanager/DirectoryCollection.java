@@ -192,14 +192,14 @@ public class DirectoryCollection {
   /**
    * @return the current valid directories 
    */
-  synchronized List<String> getGoodDirs() {
+  List<String> getGoodDirs() {
     return Collections.unmodifiableList(localDirs);
   }
 
   /**
    * @return the failed directories
    */
-  synchronized List<String> getFailedDirs() {
+  List<String> getFailedDirs() {
     return Collections.unmodifiableList(
         DirectoryCollection.concat(errorDirs, fullDirs));
   }
@@ -208,14 +208,14 @@ public class DirectoryCollection {
    * @return the directories that have used all disk space
    */
 
-  synchronized List<String> getFullDirs() {
+  List<String> getFullDirs() {
     return fullDirs;
   }
 
   /**
    * @return total the number of directory failures seen till now
    */
-  synchronized int getNumFailures() {
+  int getNumFailures() {
     return numFailures;
   }
 

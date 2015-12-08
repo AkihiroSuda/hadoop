@@ -92,6 +92,12 @@ public class TestNodeHealthService {
     conf.setLong(YarnConfiguration.NM_HEALTH_CHECK_INTERVAL_MS, 500);
     conf.setLong(
         YarnConfiguration.NM_HEALTH_CHECK_SCRIPT_TIMEOUT_MS, 1000);
+    conf.setBoolean(
+        YarnConfiguration.NM_DISK_HEALTH_CHECK_ENABLE, true);
+    conf.setLong(
+        YarnConfiguration.NM_DISK_HEALTH_CHECK_INTERVAL_MS, 500);
+    conf.setLong(
+        YarnConfiguration.NM_DISK_HEALTH_CHECK_TIMEOUT_MS, 1000);
     return conf;
   }
 
@@ -112,7 +118,7 @@ public class TestNodeHealthService {
     conf.addResource(nodeHealthConfigFile.getName());
     writeNodeHealthScriptFile("", true);
 
-    LocalDirsHandlerService dirsHandler = new LocalDirsHandlerService();
+    LocalDirsHandlerService dirsHandler = spy(new LocalDirsHandlerService());
     NodeHealthScriptRunner nodeHealthScriptRunner =
         spy(NodeManager.getNodeHealthScriptRunner(conf));
     NodeHealthCheckerService nodeHealthChecker = new NodeHealthCheckerService(
@@ -168,5 +174,21 @@ public class TestNodeHealthService {
             NodeHealthScriptRunner.NODE_HEALTH_SCRIPT_TIMED_OUT_MSG
             + NodeHealthCheckerService.SEPARATOR
             + nodeHealthChecker.getDiskHandler().getDisksHealthReport(false)));
+
+    doReturn(true).when(nodeHealthScriptRunner).isHealthy();
+    doReturn("").when(nodeHealthScriptRunner).getHealthReport();
+    setHealthStatus(healthStatus, nodeHealthChecker.isHealthy(),
+        nodeHealthChecker.getHealthReport(),
+        nodeHealthChecker.getLastHealthReportTime());
+    LOG.info("Checking Timeout--->healthy");
+    Assert.assertTrue("Node health status reported unhealthy", healthStatus
+        .getIsNodeHealthy());
+    Assert.assertTrue("Node health status reported unhealthy", healthStatus
+        .getHealthReport().equals(nodeHealthChecker.getHealthReport()));
+
+    doReturn(System.currentTimeMillis() - (500 + 1000)).when(dirsHandler).getLastDisksCheckTime();
+    LOG.info("Checking Healthy--->disk timeout");
+    Assert.assertFalse("Node health status reported healthy even after disk timeout",
+        nodeHealthChecker.isHealthy());
   }
 }
