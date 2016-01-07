@@ -1213,7 +1213,7 @@ public class TestCapacityScheduler {
     rm1.stop();
   }
   
-  @Test(timeout = 30000)
+  @Test(timeout = 60000)
   public void testRecoverRequestAfterPreemption() throws Exception {
     Configuration conf = new Configuration();
     conf.setClass(YarnConfiguration.RM_SCHEDULER, CapacityScheduler.class,
@@ -1257,10 +1257,19 @@ public class TestCapacityScheduler {
     for (ResourceRequest request : requests) {
       // Resource request must have added back in RM after preempt event
       // handling.
-      Assert.assertEquals(
-          1,
-          app.getResourceRequest(request.getPriority(),
-              request.getResourceName()).getNumContainers());
+      ResourceRequest appRequest = null;
+      int waitCount = 0;
+      // appRequest is set to non-null by AppSchedulingInfo#updateResourceRequests().
+      // we need to wait for that.
+      while(appRequest == null && waitCount++ != 20) {
+        appRequest = app.getResourceRequest(request.getPriority(),
+	    request.getResourceName());
+	try {
+	  Thread.sleep(500);
+	} catch(InterruptedException ie){}
+      }
+      Assert.assertNotNull(appRequest);
+      Assert.assertEquals(1, appRequest.getNumContainers());
     }
 
     // New container will be allocated and will move to ALLOCATED state
