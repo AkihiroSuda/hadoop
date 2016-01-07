@@ -1259,7 +1259,9 @@ public class TestNodeStatusUpdater {
     Assert.assertFalse(heartBeatID < 1);
 
     // Meanwhile call stop directly as the shutdown hook would
+    LOG.info("YYYY stopping nm");
     nm.stop();
+    LOG.info("YYYY stopped nm")    ;
 
     // NM takes a while to reach the STOPPED state.
     waitCount = 0;
@@ -1268,8 +1270,11 @@ public class TestNodeStatusUpdater {
       Thread.sleep(1000);
     }
 
+    LOG.info("YYYY foo bar");
     Assert.assertEquals(STATE.STOPPED, nm.getServiceState());
+    LOG.info("YYYY baz")    ;
     Assert.assertEquals(numCleanups.get(), 1);
+    LOG.info("YYYY hoge")    ;    
   }
 
   @Test
