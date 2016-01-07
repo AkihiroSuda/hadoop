@@ -1238,8 +1238,11 @@ public class TestNodeStatusUpdater {
 
           @Override
           public void cleanUpApplicationsOnNMShutDown() {
+	      LOG.info("XXX cuaonmsd enter");
             super.cleanUpApplicationsOnNMShutDown();
+   	      LOG.info("XXX cuaonmsd middle");
             numCleanups.incrementAndGet();
+  	      LOG.info("XXX cuaonmsd leave");
           }
         };
       }
