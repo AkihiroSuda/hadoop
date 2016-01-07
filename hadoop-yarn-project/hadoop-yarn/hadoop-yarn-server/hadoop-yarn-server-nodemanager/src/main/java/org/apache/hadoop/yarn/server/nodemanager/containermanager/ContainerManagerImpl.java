@@ -528,23 +528,37 @@ public class ContainerManagerImpl extends CompositeService implements
 
   @Override
   public void serviceStop() throws Exception {
+    LOG.info("CMI.serviceStop enter");
     setBlockNewContainerRequests(true);
+    LOG.info("CMI.serviceStop locking");
     this.writeLock.lock();
+    LOG.info("CMI.serviceStop locked");    
     try {
       serviceStopped = true;
       if (context != null) {
+        LOG.info("CMI.serviceStop calling cuaonms");
         cleanUpApplicationsOnNMShutDown();
+      } else {
+        LOG.info("CMI.serviceStop NOT calling cuaonms");
       }
     } finally {
+      LOG.info("CMI.serviceStop unlocking");
       this.writeLock.unlock();
+      LOG.info("CMI.serviceStop unlocked");
     }
     if (auxiliaryServices.getServiceState() == STARTED) {
+      LOG.info("CMI.serviceStop unreging sl");	
       auxiliaryServices.unregisterServiceListener(this);
+      LOG.info("CMI.serviceStop unreged sl");	      
     }
     if (server != null) {
+	LOG.info("CMI.serviceStop stopping srv");	
       server.stop();
+      LOG.info("CMI.serviceStop stopped srv");	
     }
+    LOG.info("CMI.serviceStop calling super");	
     super.serviceStop();
+    LOG.info("CMI.serviceStop called super");	
   }
 
   public void cleanUpApplicationsOnNMShutDown() {
@@ -1376,6 +1390,8 @@ public class ContainerManagerImpl extends CompositeService implements
   }
 
   public void setBlockNewContainerRequests(boolean blockNewContainerRequests) {
+    LOG.info("setBlockNewContainerRequests " + this.blockNewContainerRequests.get() +
+	     "->" + blockNewContainerRequests);
     this.blockNewContainerRequests.set(blockNewContainerRequests);
   }
 

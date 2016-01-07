@@ -370,17 +370,23 @@ public class NodeManager extends CompositeService
 
   @Override
   protected void serviceStop() throws Exception {
+      LOG.info("NM serviceStop enter");
     if (isStopping.getAndSet(true)) {
+	LOG.info("NM serviceStop ret immed");
       return;
     }
     try {
+	LOG.info("NM serviceStop calling super")	;
       super.serviceStop();
+      LOG.info("NM serviceStop called super")	;
       DefaultMetricsSystem.shutdown();
+      LOG.info("NM serviceStop shutdown dms")	 ;     
     } finally {
       // YARN-3641: NM's services stop get failed shouldn't block the
       // release of NMLevelDBStore.
       stopRecoveryStore();
     }
+    LOG.info("NM serviceStop leave")	    ;
   }
 
   public String getName() {

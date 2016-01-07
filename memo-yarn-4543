@@ -1,0 +1,362 @@
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Apache Hadoop YARN NodeManager 3.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-antrun-plugin:1.7:run (create-testdirs) @ hadoop-yarn-server-nodemanager ---
+[INFO] Executing tasks
+
+main:
+[INFO] Executed tasks
+[INFO]
+[INFO] --- hadoop-maven-plugins:3.0.0-SNAPSHOT:protoc (compile-protoc) @ hadoop-yarn-server-nodemanager ---
+[INFO] No changes detected in protoc files, skipping generation.
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hadoop-yarn-server-nodemanager ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 3 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hadoop-yarn-server-nodemanager ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 217 source files to /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/target/classes
+[WARNING] /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/src/main/java/org/apache/hadoop/yarn/server/nodemanager/containermanager/monitor/ContainersMonitorImpl.java: /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/src/main/java/org/apache/hadoop/yarn/server/nodemanager/containermanager/monitor/ContainersMonitorImpl.java uses unchecked or unsafe operations.
+[WARNING] /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/src/main/java/org/apache/hadoop/yarn/server/nodemanager/containermanager/monitor/ContainersMonitorImpl.java: Recompile with -Xlint:unchecked for details.
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hadoop-yarn-server-nodemanager ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 5 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hadoop-yarn-server-nodemanager ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.17:test (default-test) @ hadoop-yarn-server-nodemanager ---
+[INFO] Surefire report directory: /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=768m; support was removed in 8.0
+Running org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater
+2016-01-07 08:11:50,842 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49170
+2016-01-07 08:11:50,966 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49160
+2016-01-07 08:11:51,002 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49170
+2016-01-07 08:11:51,019 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49160
+2016-01-07 08:11:51,190 WARN  [main] util.NativeCodeLoader (NativeCodeLoader.java:<clinit>(60)) - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-01-07 08:11:51,317 INFO  [main] nodemanager.NodeManager (NodeManager.java:getNodeHealthScriptRunner(255)) - Node Manager health check script is not available or doesn't have execute permission, so not starting the node health script runner.
+2016-01-07 08:11:51,358 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.container.ContainerEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.ContainerManagerImpl$ContainerEventDispatcher
+2016-01-07 08:11:51,359 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.application.ApplicationEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.ContainerManagerImpl$ApplicationEventDispatcher
+2016-01-07 08:11:51,360 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.event.LocalizationEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.ResourceLocalizationService
+2016-01-07 08:11:51,360 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.AuxServicesEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.AuxServices
+2016-01-07 08:11:51,361 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl
+2016-01-07 08:11:51,361 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.launcher.ContainersLauncherEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.launcher.ContainersLauncher
+2016-01-07 08:11:51,387 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.ContainerManagerEventType for class org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater$7$1
+2016-01-07 08:11:51,388 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.NodeManagerEventType for class org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater$7
+2016-01-07 08:11:51,404 WARN  [main] impl.MetricsConfig (MetricsConfig.java:loadFirst(127)) - Cannot locate configuration: tried hadoop-metrics2-nodemanager.properties,hadoop-metrics2.properties
+2016-01-07 08:11:51,450 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:startTimer(374)) - Scheduled snapshot period at 10 second(s).
+2016-01-07 08:11:51,451 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:start(192)) - NodeManager metrics system started
+2016-01-07 08:11:51,476 INFO  [main] nodemanager.NodeResourceMonitorImpl (NodeResourceMonitorImpl.java:serviceInit(76)) -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.ResourceCalculatorPlugin@2accdbb5
+2016-01-07 08:11:51,477 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.loghandler.event.LogHandlerEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.loghandler.NonAggregatingLogHandler
+2016-01-07 08:11:51,479 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.sharedcache.SharedCacheUploadEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.sharedcache.SharedCacheUploadService
+2016-01-07 08:11:51,479 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceInit(261)) - AMRMProxyService is disabled
+2016-01-07 08:11:51,479 INFO  [main] localizer.ResourceLocalizationService (ResourceLocalizationService.java:validateConf(224)) - per directory file limit = 8192
+2016-01-07 08:11:51,504 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.event.LocalizerEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.ResourceLocalizationService$LocalizerTracker
+2016-01-07 08:11:51,506 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(116)) -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.ResourceCalculatorPlugin@50ad3bc1
+2016-01-07 08:11:51,515 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(121)) -  Using ResourceCalculatorProcessTree : null
+2016-01-07 08:11:51,516 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(158)) - Physical memory check enabled: true
+2016-01-07 08:11:51,517 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(159)) - Virtual memory check enabled: true
+2016-01-07 08:11:51,527 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(162)) - ContainersMonitor enabled: true
+2016-01-07 08:11:51,530 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceInit(176)) - Nodemanager resources: memory set to 5120MB.
+2016-01-07 08:11:51,534 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceInit(177)) - Nodemanager resources: vcores set to 8.
+2016-01-07 08:11:51,538 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceInit(209)) - Initialized nodemanager with : physical-memory=5120 virtual-memory=10752 virtual-cores=8
+2016-01-07 08:11:51,567 INFO  [main] ipc.CallQueueManager (CallQueueManager.java:<init>(60)) - Using callQueue class java.util.concurrent.LinkedBlockingQueue
+2016-01-07 08:11:51,585 INFO  [Socket Reader #1 for port 49170] ipc.Server (Server.java:run(727)) - Starting Socket Reader #1 for port 49170
+2016-01-07 08:11:51,606 INFO  [main] pb.RpcServerFactoryPBImpl (RpcServerFactoryPBImpl.java:createServer(174)) - Adding protocol org.apache.hadoop.yarn.api.ContainerManagementProtocolPB to the server
+2016-01-07 08:11:51,606 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStart(464)) - Blocking new container-requests as container manager rpc server is still starting.
+2016-01-07 08:11:51,607 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:setBlockNewContainerRequests(1393)) - setBlockNewContainerRequests false->true
+2016-01-07 08:11:51,611 INFO  [IPC Server Responder] ipc.Server (Server.java:run(957)) - IPC Server Responder: starting
+2016-01-07 08:11:51,617 INFO  [IPC Server listener on 49170] ipc.Server (Server.java:run(797)) - IPC Server listener on 49170: starting
+2016-01-07 08:11:51,631 INFO  [main] security.NMContainerTokenSecretManager (NMContainerTokenSecretManager.java:setNodeId(260)) - Updating node address : localhost:49170
+2016-01-07 08:11:51,635 INFO  [main] ipc.CallQueueManager (CallQueueManager.java:<init>(60)) - Using callQueue class java.util.concurrent.LinkedBlockingQueue
+2016-01-07 08:11:51,647 INFO  [Socket Reader #1 for port 49160] ipc.Server (Server.java:run(727)) - Starting Socket Reader #1 for port 49160
+2016-01-07 08:11:51,651 INFO  [main] pb.RpcServerFactoryPBImpl (RpcServerFactoryPBImpl.java:createServer(174)) - Adding protocol org.apache.hadoop.yarn.server.nodemanager.api.LocalizationProtocolPB to the server
+2016-01-07 08:11:51,652 INFO  [IPC Server Responder] ipc.Server (Server.java:run(957)) - IPC Server Responder: starting
+2016-01-07 08:11:51,652 INFO  [IPC Server listener on 49160] ipc.Server (Server.java:run(797)) - IPC Server listener on 49160: starting
+2016-01-07 08:11:51,654 INFO  [main] localizer.ResourceLocalizationService (ResourceLocalizationService.java:serviceStart(363)) - Localizer started on port 49160
+2016-01-07 08:11:51,664 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStart(509)) - ContainerManager started at /127.0.0.1:49170
+2016-01-07 08:11:51,664 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStart(510)) - ContainerManager bound to localhost/127.0.0.1:49170
+2016-01-07 08:11:51,666 INFO  [main] webapp.WebServer (WebServer.java:serviceStart(71)) - Instantiating NMWebApp at 0.0.0.0:8042
+2016-01-07 08:11:51,718 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2016-01-07 08:11:51,725 INFO  [main] server.AuthenticationFilter (AuthenticationFilter.java:constructSecretProvider(304)) - Unable to initialize FileSignerSecretProvider, falling back to use random secrets.
+2016-01-07 08:11:51,729 INFO  [main] http.HttpRequestLog (HttpRequestLog.java:getRequestLog(80)) - Http request log for http.requests.nodemanager is not defined
+2016-01-07 08:11:51,734 INFO  [main] http.HttpServer2 (HttpServer2.java:addGlobalFilter(701)) - Added global filter 'safety' (class=org.apache.hadoop.http.HttpServer2$QuotingInputFilter)
+2016-01-07 08:11:51,735 INFO  [main] http.HttpServer2 (HttpServer2.java:addFilter(676)) - Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context node
+2016-01-07 08:11:51,741 INFO  [main] http.HttpServer2 (HttpServer2.java:addFilter(684)) - Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context static
+2016-01-07 08:11:51,742 INFO  [main] http.HttpServer2 (HttpServer2.java:addFilter(684)) - Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context logs
+2016-01-07 08:11:51,744 INFO  [main] http.HttpServer2 (HttpServer2.java:initializeWebServer(409)) - adding path spec: /node/*
+2016-01-07 08:11:51,744 INFO  [main] http.HttpServer2 (HttpServer2.java:initializeWebServer(409)) - adding path spec: /ws/*
+2016-01-07 08:11:51,960 INFO  [main] webapp.WebApps (WebApps.java:build(288)) - Registered webapp guice modules
+2016-01-07 08:11:51,962 INFO  [main] http.HttpServer2 (HttpServer2.java:openListeners(906)) - Jetty bound to port 8042
+2016-01-07 08:11:51,963 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - jetty-6.1.26
+2016-01-07 08:11:51,980 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - Extract jar:file:/home/ubuntu/.m2/repository/org/apache/hadoop/hadoop-yarn-common/3.0.0-SNAPSHOT/hadoop-yarn-common-3.0.0-SNAPSHOT.jar!/webapps/node to /tmp/Jetty_0_0_0_0_8042_node____19tj0x/webapp
+Jan 07, 2016 8:11:52 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory register
+INFO: Registering org.apache.hadoop.yarn.server.nodemanager.webapp.NMWebServices as a root resource class
+Jan 07, 2016 8:11:52 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory register
+INFO: Registering org.apache.hadoop.yarn.webapp.GenericExceptionHandler as a provider class
+Jan 07, 2016 8:11:52 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory register
+INFO: Registering org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver as a provider class
+Jan 07, 2016 8:11:52 AM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.9 09/02/2011 11:17 AM'
+Jan 07, 2016 8:11:52 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory getComponentProvider
+INFO: Binding org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver to GuiceManagedComponentProvider with the scope "Singleton"
+Jan 07, 2016 8:11:52 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory getComponentProvider
+INFO: Binding org.apache.hadoop.yarn.webapp.GenericExceptionHandler to GuiceManagedComponentProvider with the scope "Singleton"
+Jan 07, 2016 8:11:52 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory getComponentProvider
+INFO: Binding org.apache.hadoop.yarn.server.nodemanager.webapp.NMWebServices to GuiceManagedComponentProvider with the scope "Singleton"
+2016-01-07 08:11:52,728 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - Started SelectChannelConnector@0.0.0.0:8042
+2016-01-07 08:11:52,729 INFO  [main] webapp.WebApps (WebApps.java:start(307)) - Web app node started at 8042
+2016-01-07 08:11:52,731 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceStart(223)) - Node ID assigned is : localhost:49170
+2016-01-07 08:11:52,734 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:getNMContainerStatuses(552)) - Sending out 0 NM container statuses: []
+2016-01-07 08:11:52,743 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:registerWithRM(331)) - Registering with RM using containers :[]
+2016-01-07 08:11:52,752 INFO  [main] security.NMContainerTokenSecretManager (NMContainerTokenSecretManager.java:setMasterKey(138)) - Rolling master-key for container-tokens, got key with id 123
+2016-01-07 08:11:52,754 INFO  [main] security.NMTokenSecretManagerInNM (NMTokenSecretManagerInNM.java:setMasterKey(135)) - Rolling master-key for container-tokens, got key with id 123
+2016-01-07 08:11:52,754 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:registerWithRM(392)) - Registered with ResourceManager as localhost:49170 with total resource of <memory:5120, vCores:8>
+2016-01-07 08:11:52,755 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:registerWithRM(393)) - Notifying ContainerManager to unblock new container-requests
+2016-01-07 08:11:52,755 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:setBlockNewContainerRequests(1393)) - setBlockNewContainerRequests true->false
+2016-01-07 08:11:52,778 WARN  [Node Status Updater] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:run(747)) - Recieved SHUTDOWN signal from Resourcemanager as part of heartbeat, hence shutting down.
+2016-01-07 08:11:52,778 WARN  [Node Status Updater] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:run(749)) - Message from ResourceManager:
+2016-01-07 08:11:52,791 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(373)) - NM serviceStop enter
+2016-01-07 08:11:52,791 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(379)) - NM serviceStop calling super
+2016-01-07 08:11:52,794 INFO  [Thread-60] mortbay.log (Slf4jLog.java:info(67)) - Stopped SelectChannelConnector@0.0.0.0:8042
+2016-01-07 08:11:52,795 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(531)) - CMI.serviceStop enter
+2016-01-07 08:11:52,795 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:setBlockNewContainerRequests(1393)) - setBlockNewContainerRequests false->true
+2016-01-07 08:11:52,795 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(533)) - CMI.serviceStop locking
+2016-01-07 08:11:52,795 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(535)) - CMI.serviceStop locked
+2016-01-07 08:11:52,795 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(539)) - CMI.serviceStop calling cuaonms
+2016-01-07 08:11:52,796 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(545)) - CMI.serviceStop unlocking
+2016-01-07 08:11:52,796 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(547)) - CMI.serviceStop unlocked
+2016-01-07 08:11:52,796 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(550)) - CMI.serviceStop unreging sl
+2016-01-07 08:11:52,797 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(552)) - CMI.serviceStop unreged sl
+2016-01-07 08:11:52,797 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(555)) - CMI.serviceStop stopping srv
+2016-01-07 08:11:52,797 INFO  [Thread-60] ipc.Server (Server.java:stop(2697)) - Stopping server on 49170
+2016-01-07 08:11:52,798 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(557)) - CMI.serviceStop stopped srv
+2016-01-07 08:11:52,798 INFO  [IPC Server Responder] ipc.Server (Server.java:run(962)) - Stopping IPC Server Responder
+2016-01-07 08:11:52,798 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(559)) - CMI.serviceStop calling super
+2016-01-07 08:11:52,798 INFO  [IPC Server listener on 49170] ipc.Server (Server.java:run(829)) - Stopping IPC Server listener on 49170
+2016-01-07 08:11:52,800 WARN  [Container Monitor] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:run(568)) - org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl is interrupted. Exiting.
+2016-01-07 08:11:52,800 INFO  [Thread-60] ipc.Server (Server.java:stop(2697)) - Stopping server on 49160
+2016-01-07 08:11:52,801 INFO  [IPC Server Responder] ipc.Server (Server.java:run(962)) - Stopping IPC Server Responder
+2016-01-07 08:11:52,801 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(561)) - CMI.serviceStop called super
+2016-01-07 08:11:52,801 INFO  [Public Localizer] localizer.ResourceLocalizationService (ResourceLocalizationService.java:run(908)) - Public cache exiting
+2016-01-07 08:11:52,801 WARN  [Node Resource Monitor] nodemanager.NodeResourceMonitorImpl (NodeResourceMonitorImpl.java:run(154)) - org.apache.hadoop.yarn.server.nodemanager.NodeResourceMonitorImpl is interrupted. Exiting.
+2016-01-07 08:11:52,801 INFO  [IPC Server listener on 49160] ipc.Server (Server.java:run(829)) - Stopping IPC Server listener on 49160
+2016-01-07 08:11:52,801 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(381)) - NM serviceStop called super
+2016-01-07 08:11:52,801 INFO  [Thread-60] impl.MetricsSystemImpl (MetricsSystemImpl.java:stop(211)) - Stopping NodeManager metrics system...
+2016-01-07 08:11:52,804 INFO  [Thread-60] impl.MetricsSystemImpl (MetricsSystemImpl.java:stop(217)) - NodeManager metrics system stopped.
+2016-01-07 08:11:52,804 INFO  [Thread-60] impl.MetricsSystemImpl (MetricsSystemImpl.java:shutdown(606)) - NodeManager metrics system shutdown complete.
+2016-01-07 08:11:52,804 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(383)) - NM serviceStop shutdown dms
+2016-01-07 08:11:52,804 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(389)) - NM serviceStop leave
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.741 sec - in org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8.915s
+[INFO] Finished at: Thu Jan 07 08:11:53 UTC 2016
+[INFO] Final Memory: 27M/314M
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Apache Hadoop YARN NodeManager 3.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-antrun-plugin:1.7:run (create-testdirs) @ hadoop-yarn-server-nodemanager ---
+[INFO] Executing tasks
+
+main:
+[INFO] Executed tasks
+[INFO]
+[INFO] --- hadoop-maven-plugins:3.0.0-SNAPSHOT:protoc (compile-protoc) @ hadoop-yarn-server-nodemanager ---
+[INFO] No changes detected in protoc files, skipping generation.
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hadoop-yarn-server-nodemanager ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 3 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hadoop-yarn-server-nodemanager ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 217 source files to /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/target/classes
+[WARNING] /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/src/main/java/org/apache/hadoop/yarn/server/nodemanager/containermanager/monitor/ContainersMonitorImpl.java: /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/src/main/java/org/apache/hadoop/yarn/server/nodemanager/containermanager/monitor/ContainersMonitorImpl.java uses unchecked or unsafe operations.
+[WARNING] /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/src/main/java/org/apache/hadoop/yarn/server/nodemanager/containermanager/monitor/ContainersMonitorImpl.java: Recompile with -Xlint:unchecked for details.
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hadoop-yarn-server-nodemanager ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 5 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hadoop-yarn-server-nodemanager ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.17:test (default-test) @ hadoop-yarn-server-nodemanager ---
+[INFO] Surefire report directory: /home/ubuntu/hadoop/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=768m; support was removed in 8.0
+Running org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater
+2016-01-07 08:13:03,283 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49170
+2016-01-07 08:13:03,433 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49160
+2016-01-07 08:13:03,488 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49170
+2016-01-07 08:13:03,509 INFO  [main] net.ServerSocketUtil (ServerSocketUtil.java:getPort(52)) - Using port 49160
+2016-01-07 08:13:03,713 WARN  [main] util.NativeCodeLoader (NativeCodeLoader.java:<clinit>(60)) - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-01-07 08:13:03,889 INFO  [main] nodemanager.NodeManager (NodeManager.java:getNodeHealthScriptRunner(255)) - Node Manager health check script is not available or doesn't have execute permission, so not starting the node health script runner.
+2016-01-07 08:13:03,949 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.container.ContainerEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.ContainerManagerImpl$ContainerEventDispatcher
+2016-01-07 08:13:03,949 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.application.ApplicationEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.ContainerManagerImpl$ApplicationEventDispatcher
+2016-01-07 08:13:03,950 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.event.LocalizationEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.ResourceLocalizationService
+2016-01-07 08:13:03,950 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.AuxServicesEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.AuxServices
+2016-01-07 08:13:03,953 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl
+2016-01-07 08:13:03,953 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.launcher.ContainersLauncherEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.launcher.ContainersLauncher
+2016-01-07 08:13:03,984 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.ContainerManagerEventType for class org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater$7$1
+2016-01-07 08:13:03,985 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.NodeManagerEventType for class org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater$7
+2016-01-07 08:13:04,002 WARN  [main] impl.MetricsConfig (MetricsConfig.java:loadFirst(127)) - Cannot locate configuration: tried hadoop-metrics2-nodemanager.properties,hadoop-metrics2.properties
+2016-01-07 08:13:04,051 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:startTimer(374)) - Scheduled snapshot period at 10 second(s).
+2016-01-07 08:13:04,051 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:start(192)) - NodeManager metrics system started
+2016-01-07 08:13:04,079 INFO  [main] nodemanager.NodeResourceMonitorImpl (NodeResourceMonitorImpl.java:serviceInit(76)) -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.ResourceCalculatorPlugin@2accdbb5
+2016-01-07 08:13:04,080 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.loghandler.event.LogHandlerEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.loghandler.NonAggregatingLogHandler
+2016-01-07 08:13:04,081 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.sharedcache.SharedCacheUploadEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.sharedcache.SharedCacheUploadService
+2016-01-07 08:13:04,081 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceInit(261)) - AMRMProxyService is disabled
+2016-01-07 08:13:04,081 INFO  [main] localizer.ResourceLocalizationService (ResourceLocalizationService.java:validateConf(224)) - per directory file limit = 8192
+2016-01-07 08:13:04,104 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(208)) - Registering class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.event.LocalizerEventType for class org.apache.hadoop.yarn.server.nodemanager.containermanager.localizer.ResourceLocalizationService$LocalizerTracker
+2016-01-07 08:13:04,106 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(116)) -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.ResourceCalculatorPlugin@50ad3bc1
+2016-01-07 08:13:04,106 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(121)) -  Using ResourceCalculatorProcessTree : null
+2016-01-07 08:13:04,107 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(158)) - Physical memory check enabled: true
+2016-01-07 08:13:04,107 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(159)) - Virtual memory check enabled: true
+2016-01-07 08:13:04,110 INFO  [main] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:serviceInit(162)) - ContainersMonitor enabled: true
+2016-01-07 08:13:04,112 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceInit(176)) - Nodemanager resources: memory set to 5120MB.
+2016-01-07 08:13:04,112 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceInit(177)) - Nodemanager resources: vcores set to 8.
+2016-01-07 08:13:04,115 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceInit(209)) - Initialized nodemanager with : physical-memory=5120 virtual-memory=10752 virtual-cores=8
+2016-01-07 08:13:04,139 INFO  [main] ipc.CallQueueManager (CallQueueManager.java:<init>(60)) - Using callQueue class java.util.concurrent.LinkedBlockingQueue
+2016-01-07 08:13:04,155 INFO  [Socket Reader #1 for port 49170] ipc.Server (Server.java:run(727)) - Starting Socket Reader #1 for port 49170
+2016-01-07 08:13:04,177 INFO  [main] pb.RpcServerFactoryPBImpl (RpcServerFactoryPBImpl.java:createServer(174)) - Adding protocol org.apache.hadoop.yarn.api.ContainerManagementProtocolPB to the server
+2016-01-07 08:13:04,177 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStart(464)) - Blocking new container-requests as container manager rpc server is still starting.
+2016-01-07 08:13:04,177 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:setBlockNewContainerRequests(1393)) - setBlockNewContainerRequests false->true
+2016-01-07 08:13:04,178 INFO  [IPC Server Responder] ipc.Server (Server.java:run(957)) - IPC Server Responder: starting
+2016-01-07 08:13:04,179 INFO  [IPC Server listener on 49170] ipc.Server (Server.java:run(797)) - IPC Server listener on 49170: starting
+2016-01-07 08:13:04,195 INFO  [main] security.NMContainerTokenSecretManager (NMContainerTokenSecretManager.java:setNodeId(260)) - Updating node address : localhost:49170
+2016-01-07 08:13:04,198 INFO  [main] ipc.CallQueueManager (CallQueueManager.java:<init>(60)) - Using callQueue class java.util.concurrent.LinkedBlockingQueue
+2016-01-07 08:13:04,207 INFO  [Socket Reader #1 for port 49160] ipc.Server (Server.java:run(727)) - Starting Socket Reader #1 for port 49160
+2016-01-07 08:13:04,208 INFO  [main] pb.RpcServerFactoryPBImpl (RpcServerFactoryPBImpl.java:createServer(174)) - Adding protocol org.apache.hadoop.yarn.server.nodemanager.api.LocalizationProtocolPB to the server
+2016-01-07 08:13:04,210 INFO  [IPC Server Responder] ipc.Server (Server.java:run(957)) - IPC Server Responder: starting
+2016-01-07 08:13:04,210 INFO  [IPC Server listener on 49160] ipc.Server (Server.java:run(797)) - IPC Server listener on 49160: starting
+2016-01-07 08:13:04,212 INFO  [main] localizer.ResourceLocalizationService (ResourceLocalizationService.java:serviceStart(363)) - Localizer started on port 49160
+2016-01-07 08:13:04,221 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStart(509)) - ContainerManager started at /127.0.0.1:49170
+2016-01-07 08:13:04,221 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStart(510)) - ContainerManager bound to localhost/127.0.0.1:49170
+2016-01-07 08:13:04,222 INFO  [main] webapp.WebServer (WebServer.java:serviceStart(71)) - Instantiating NMWebApp at 0.0.0.0:8042
+2016-01-07 08:13:04,274 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2016-01-07 08:13:04,280 INFO  [main] server.AuthenticationFilter (AuthenticationFilter.java:constructSecretProvider(304)) - Unable to initialize FileSignerSecretProvider, falling back to use random secrets.
+2016-01-07 08:13:04,284 INFO  [main] http.HttpRequestLog (HttpRequestLog.java:getRequestLog(80)) - Http request log for http.requests.nodemanager is not defined
+2016-01-07 08:13:04,289 INFO  [main] http.HttpServer2 (HttpServer2.java:addGlobalFilter(701)) - Added global filter 'safety' (class=org.apache.hadoop.http.HttpServer2$QuotingInputFilter)
+2016-01-07 08:13:04,291 INFO  [main] http.HttpServer2 (HttpServer2.java:addFilter(676)) - Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context node
+2016-01-07 08:13:04,291 INFO  [main] http.HttpServer2 (HttpServer2.java:addFilter(684)) - Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context static
+2016-01-07 08:13:04,291 INFO  [main] http.HttpServer2 (HttpServer2.java:addFilter(684)) - Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context logs
+2016-01-07 08:13:04,293 INFO  [main] http.HttpServer2 (HttpServer2.java:initializeWebServer(409)) - adding path spec: /node/*
+2016-01-07 08:13:04,293 INFO  [main] http.HttpServer2 (HttpServer2.java:initializeWebServer(409)) - adding path spec: /ws/*
+2016-01-07 08:13:05,081 INFO  [main] webapp.WebApps (WebApps.java:build(288)) - Registered webapp guice modules
+2016-01-07 08:13:05,085 INFO  [main] http.HttpServer2 (HttpServer2.java:openListeners(906)) - Jetty bound to port 8042
+2016-01-07 08:13:05,086 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - jetty-6.1.26
+2016-01-07 08:13:05,102 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - Extract jar:file:/home/ubuntu/.m2/repository/org/apache/hadoop/hadoop-yarn-common/3.0.0-SNAPSHOT/hadoop-yarn-common-3.0.0-SNAPSHOT.jar!/webapps/node to /tmp/Jetty_0_0_0_0_8042_node____19tj0x/webapp
+Jan 07, 2016 8:14:10 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory register
+INFO: Registering org.apache.hadoop.yarn.server.nodemanager.webapp.NMWebServices as a root resource class
+Jan 07, 2016 8:14:12 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory register
+INFO: Registering org.apache.hadoop.yarn.webapp.GenericExceptionHandler as a provider class
+Jan 07, 2016 8:14:12 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory register
+INFO: Registering org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver as a provider class
+Jan 07, 2016 8:14:13 AM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.9 09/02/2011 11:17 AM'
+Jan 07, 2016 8:14:41 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory getComponentProvider
+INFO: Binding org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver to GuiceManagedComponentProvider with the scope "Singleton"
+Jan 07, 2016 8:16:14 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory getComponentProvider
+INFO: Binding org.apache.hadoop.yarn.webapp.GenericExceptionHandler to GuiceManagedComponentProvider with the scope "Singleton"
+Jan 07, 2016 8:17:51 AM com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory getComponentProvider
+INFO: Binding org.apache.hadoop.yarn.server.nodemanager.webapp.NMWebServices to GuiceManagedComponentProvider with the scope "Singleton"
+2016-01-07 08:17:57,586 INFO  [main] mortbay.log (Slf4jLog.java:info(67)) - Started SelectChannelConnector@0.0.0.0:8042
+2016-01-07 08:17:57,797 INFO  [main] webapp.WebApps (WebApps.java:start(307)) - Web app node started at 8042
+2016-01-07 08:17:57,857 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:serviceStart(223)) - Node ID assigned is : localhost:49170
+2016-01-07 08:17:58,034 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:getNMContainerStatuses(552)) - Sending out 0 NM container statuses: []
+2016-01-07 08:17:59,431 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:registerWithRM(331)) - Registering with RM using containers :[]
+2016-01-07 08:18:02,718 INFO  [main] security.NMContainerTokenSecretManager (NMContainerTokenSecretManager.java:setMasterKey(138)) - Rolling master-key for container-tokens, got key with id 123
+2016-01-07 08:18:03,041 INFO  [main] security.NMTokenSecretManagerInNM (NMTokenSecretManagerInNM.java:setMasterKey(135)) - Rolling master-key for container-tokens, got key with id 123
+2016-01-07 08:18:03,041 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:registerWithRM(392)) - Registered with ResourceManager as localhost:49170 with total resource of <memory:5120, vCores:8>
+2016-01-07 08:18:03,332 INFO  [main] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:registerWithRM(393)) - Notifying ContainerManager to unblock new container-requests
+2016-01-07 08:18:03,384 INFO  [main] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:setBlockNewContainerRequests(1393)) - setBlockNewContainerRequests true->false
+2016-01-07 08:18:03,767 WARN  [Node Status Updater] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:run(747)) - Recieved SHUTDOWN signal from Resourcemanager as part of heartbeat, hence shutting down.
+2016-01-07 08:18:03,767 WARN  [Node Status Updater] nodemanager.NodeStatusUpdaterImpl (NodeStatusUpdaterImpl.java:run(749)) - Message from ResourceManager:
+2016-01-07 08:18:03,769 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(373)) - NM serviceStop enter
+2016-01-07 08:18:03,769 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(379)) - NM serviceStop calling super
+2016-01-07 08:18:04,355 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:stop(211)) - Stopping NodeManager metrics system...
+2016-01-07 08:18:04,356 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:stop(217)) - NodeManager metrics system stopped.
+2016-01-07 08:18:04,357 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:shutdown(606)) - NodeManager metrics system shutdown complete.
+2016-01-07 08:18:04,963 INFO  [Thread-60] mortbay.log (Slf4jLog.java:info(67)) - Stopped SelectChannelConnector@0.0.0.0:8042
+2016-01-07 08:18:05,787 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(531)) - CMI.serviceStop enter
+2016-01-07 08:18:05,787 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:setBlockNewContainerRequests(1393)) - setBlockNewContainerRequests false->true
+2016-01-07 08:18:05,787 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(533)) - CMI.serviceStop locking
+2016-01-07 08:18:05,787 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(535)) - CMI.serviceStop locked
+2016-01-07 08:18:05,788 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(539)) - CMI.serviceStop calling cuaonms
+2016-01-07 08:18:05,788 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(545)) - CMI.serviceStop unlocking
+2016-01-07 08:18:05,788 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(547)) - CMI.serviceStop unlocked
+2016-01-07 08:18:05,788 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(550)) - CMI.serviceStop unreging sl
+2016-01-07 08:18:05,788 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(552)) - CMI.serviceStop unreged sl
+2016-01-07 08:18:05,788 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(555)) - CMI.serviceStop stopping srv
+2016-01-07 08:18:05,788 INFO  [Thread-60] ipc.Server (Server.java:stop(2697)) - Stopping server on 49170
+2016-01-07 08:18:05,789 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(557)) - CMI.serviceStop stopped srv
+2016-01-07 08:18:05,789 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(559)) - CMI.serviceStop calling super
+2016-01-07 08:18:05,789 INFO  [IPC Server listener on 49170] ipc.Server (Server.java:run(829)) - Stopping IPC Server listener on 49170
+2016-01-07 08:18:05,790 INFO  [IPC Server Responder] ipc.Server (Server.java:run(962)) - Stopping IPC Server Responder
+2016-01-07 08:18:05,790 WARN  [Container Monitor] monitor.ContainersMonitorImpl (ContainersMonitorImpl.java:run(568)) - org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl is interrupted. Exiting.
+2016-01-07 08:18:06,077 INFO  [Thread-60] ipc.Server (Server.java:stop(2697)) - Stopping server on 49160
+2016-01-07 08:18:06,396 INFO  [IPC Server Responder] ipc.Server (Server.java:run(962)) - Stopping IPC Server Responder
+2016-01-07 08:18:06,408 INFO  [IPC Server listener on 49160] ipc.Server (Server.java:run(829)) - Stopping IPC Server listener on 49160
+2016-01-07 08:18:06,590 INFO  [Public Localizer] localizer.ResourceLocalizationService (ResourceLocalizationService.java:run(908)) - Public cache exiting
+2016-01-07 08:18:06,656 INFO  [Thread-60] containermanager.ContainerManagerImpl (ContainerManagerImpl.java:serviceStop(561)) - CMI.serviceStop called super
+2016-01-07 08:18:06,752 WARN  [Node Resource Monitor] nodemanager.NodeResourceMonitorImpl (NodeResourceMonitorImpl.java:run(154)) - org.apache.hadoop.yarn.server.nodemanager.NodeResourceMonitorImpl is interrupted. Exiting.
+2016-01-07 08:18:06,780 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(381)) - NM serviceStop called super
+2016-01-07 08:18:06,784 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(383)) - NM serviceStop shutdown dms
+2016-01-07 08:18:06,784 INFO  [Thread-60] nodemanager.NodeManager (NodeManager.java:serviceStop(389)) - NM serviceStop leave
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 305.309 sec <<< FAILURE! - in org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater
+testStopReentrant(org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater)  Time elapsed: 305.099 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<0> but was:<1>
+        at org.junit.Assert.fail(Assert.java:88)
+        at org.junit.Assert.failNotEquals(Assert.java:743)
+        at org.junit.Assert.assertEquals(Assert.java:118)
+        at org.junit.Assert.assertEquals(Assert.java:555)
+        at org.junit.Assert.assertEquals(Assert.java:542)
+        at org.apache.hadoop.yarn.server.nodemanager.TestNodeStatusUpdater.testStopReentrant(TestNodeStatusUpdater.java:1269)
+
+
+Results :
+
+Failed tests:
+  TestNodeStatusUpdater.testStopReentrant:1269 expected:<0> but was:<1>
+
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 6:24.594s
+[INFO] Finished at: Thu Jan 07 08:18:19 UTC 2016
+
