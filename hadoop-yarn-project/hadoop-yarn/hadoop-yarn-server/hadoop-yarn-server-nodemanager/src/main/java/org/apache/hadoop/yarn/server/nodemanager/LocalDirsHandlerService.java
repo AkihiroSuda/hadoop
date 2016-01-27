@@ -102,6 +102,9 @@ public class LocalDirsHandlerService extends AbstractService {
 
   /** when disk health checking code was last run */
   private long lastDisksCheckTime;
+
+  /** timeout (milliseconds) value for checking directories */
+  private long checkDirsTimeout;
   
   private static String FILE_SCHEME = "file";
 
@@ -159,6 +162,14 @@ public class LocalDirsHandlerService extends AbstractService {
           (log != null) ? log : "");
       logDirsAllocator = new LocalDirAllocator(
           NM_GOOD_LOG_DIRS);
+
+      checkDirsTimeout =
+          conf.getLong(YarnConfiguration.NM_DISK_HEALTH_CHECK_TIMEOUT_MS,
+            YarnConfiguration.DEFAULT_NM_DISK_HEALTH_CHECK_TIMEOUT_MS);
+      if (checkDirsTimeout < 0 ) {
+	  throw new YarnRuntimeException("Non-positive value passed as "
+	      + "yarn.nodemanager.disk-health-checker.dir-timeout-ms");
+      }
     }
 
     @Override
@@ -446,10 +457,10 @@ public class LocalDirsHandlerService extends AbstractService {
     Set<String> failedLogDirsPreCheck =
         new HashSet<String>(logDirs.getFailedDirs());
 
-    if (localDirs.checkDirs()) {
+    if (localDirs.checkDirs(checkDirsTimeout)) {
       disksStatusChange = true;
     }
-    if (logDirs.checkDirs()) {
+    if (logDirs.checkDirs(checkDirsTimeout)) {
       disksStatusChange = true;
     }
 

@@ -1097,6 +1097,12 @@ public class YarnConfiguration extends Configuration {
   public static final long DEFAULT_NM_DISK_HEALTH_CHECK_INTERVAL_MS =
       2 * 60 * 1000;
 
+  /* timeout of running disks' health checker. */
+  public static final String NM_DISK_HEALTH_CHECK_TIMEOUT_MS =
+      NM_DISK_HEALTH_CHECK_PREFIX + "timeout-ms";
+  public static final long DEFAULT_NM_DISK_HEALTH_CHECK_TIMEOUT_MS =
+      30 * 1000;
+
   /**
    * The minimum fraction of number of disks to be healthy for the nodemanager
    * to launch new containers. This applies to nm-local-dirs and nm-log-dirs.

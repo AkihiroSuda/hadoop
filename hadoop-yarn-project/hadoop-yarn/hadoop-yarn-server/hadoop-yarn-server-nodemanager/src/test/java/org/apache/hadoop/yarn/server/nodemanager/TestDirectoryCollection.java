@@ -22,6 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
@@ -332,5 +335,28 @@ public class TestDirectoryCollection {
     public void onDirsChanged() {
       num++;
     }
+  }
+
+  @Test
+  public void testTimeout() throws IOException {
+    String[] dirs = {testFile.getPath()};
+    final CountDownLatch latch = new CountDownLatch(1);
+    DirectoryCollection dc = new DirectoryCollection(dirs, 0.0F, 0.0F, 100) {
+      Map<String, DiskErrorInformation> synchronousTestDirs(List<String> dirs,
+        Set<String> goodDirs) {
+        try {
+          Thread.sleep(10 * 1000);
+	} catch (InterruptedException ie) {
+	}
+	latch.countDown();
+	return super.synchronousTestDirs(dirs, goodDirs);
+      }
+    };
+    Assert.assertTrue(dc.checkDirs((long)(0.1 * 1000)));
+    Assert.assertFalse("checkDirs should return false when timedout",
+      dc.checkDirs(3 * 1000));
+    try {
+      latch.await();
+    } catch (InterruptedException ie) { }
   }
 }

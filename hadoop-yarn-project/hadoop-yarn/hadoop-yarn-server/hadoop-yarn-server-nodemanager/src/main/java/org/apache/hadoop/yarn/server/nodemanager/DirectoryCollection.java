@@ -28,7 +28,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.RandomStringUtils;
@@ -38,6 +47,7 @@ import org.apache.hadoop.fs.FileContext;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.permission.FsPermission;
 import org.apache.hadoop.util.DiskChecker;
+import org.apache.hadoop.yarn.exceptions.YarnRuntimeException;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -51,7 +61,7 @@ public class DirectoryCollection {
    * The enum defines disk failure type.
    */
   public enum DiskErrorCause {
-    DISK_FULL, OTHER
+    DISK_FULL, TIMEDOUT, OTHER
   }
 
   static class DiskErrorInformation {
@@ -98,6 +108,9 @@ public class DirectoryCollection {
   private int goodDirsDiskUtilizationPercentage;
 
   private Set<DirsChangeListener> dirsChangeListeners;
+
+  private ExecutorService asyncTestDirsExecutor;
+  private ConcurrentHashMap<String, Boolean> inprogressTestDirs;
 
   /**
    * Create collection for the directories specified. No check for free space.
@@ -175,6 +188,9 @@ public class DirectoryCollection {
         utilizationSpaceCutOff < 0 ? 0 : utilizationSpaceCutOff;
 
     dirsChangeListeners = new HashSet<DirsChangeListener>();
+
+    asyncTestDirsExecutor = Executors.newCachedThreadPool();
+    inprogressTestDirs = new ConcurrentHashMap<String, Boolean>();
   }
 
   synchronized void registerDirsChangeListener(
@@ -248,11 +264,13 @@ public class DirectoryCollection {
    * Check the health of current set of local directories(good and failed),
    * updating the list of valid directories if necessary.
    *
+   * @param timeout
+   *         timeout (milliseconds) value
    * @return <em>true</em> if there is a new disk-failure identified in this
    *         checking or a failed directory passes the disk check <em>false</em>
    *         otherwise.
    */
-  synchronized boolean checkDirs() {
+  synchronized boolean checkDirs(long timeout) {
     boolean setChanged = false;
     Set<String> preCheckGoodDirs = new HashSet<String>(localDirs);
     Set<String> preCheckFullDirs = new HashSet<String>(fullDirs);
@@ -262,7 +280,7 @@ public class DirectoryCollection {
         DirectoryCollection.concat(localDirs, failedDirs);
 
     Map<String, DiskErrorInformation> dirsFailedCheck = testDirs(allLocalDirs,
-        preCheckGoodDirs);
+        preCheckGoodDirs, timeout);
 
     localDirs.clear();
     errorDirs.clear();
@@ -276,6 +294,7 @@ public class DirectoryCollection {
       case DISK_FULL:
         fullDirs.add(entry.getKey());
         break;
+      case TIMEDOUT:
       case OTHER:
         errorDirs.add(entry.getKey());
         break;
@@ -322,7 +341,87 @@ public class DirectoryCollection {
     return setChanged;
   }
 
+  synchronized boolean checkDirs() {
+    return checkDirs(0);
+  }
+
+  private class AsyncTestDirsCallable implements Callable<Map<String, DiskErrorInformation> > {
+    private List<String> dirs;
+    private Set<String> goodDirs;
+
+    public AsyncTestDirsCallable(List<String> dirs, Set<String> goodDirs) {
+      this.dirs = dirs;
+      this.goodDirs = goodDirs;
+    }
+
+    private String hashArgs() {
+      String hash = "";
+      for (String s: dirs) {
+        hash += s;
+      }
+      hash += ":";
+      for (String s: goodDirs) {
+        hash += s;
+      }
+      return hash;
+    }
+
+    public Map<String, DiskErrorInformation> call() throws Exception {
+      String hash = hashArgs();
+      // debug YARN-4301
+      if (hash == null || inprogressTestDirs == null) {
+	  throw new RuntimeException("as you can see, this RuntimeException doesn't happen. so there should not be NPE");
+      }
+      // end debug YARN-4301
+      // not sure why NPE happens here
+      boolean inprogress;
+      try {
+        inprogress = inprogressTestDirs.putIfAbsent(hash, true);
+      } catch (NullPointerException npe) {
+        throw new RuntimeException("strange NPE", npe);
+      }
+
+      if (inprogress) {
+        throw new YarnRuntimeException("testDirs() in-progress: " + dirs + "," + goodDirs);
+      }
+      Map<String, DiskErrorInformation> result = synchronousTestDirs(dirs, goodDirs);
+      inprogressTestDirs.remove(hash);
+      return result;
+    }
+  }
+
   Map<String, DiskErrorInformation> testDirs(List<String> dirs,
+      Set<String> goodDirs, long timeout) {
+    if (timeout == 0) {
+      return synchronousTestDirs(dirs, goodDirs);
+    }
+    AsyncTestDirsCallable callable = new AsyncTestDirsCallable(dirs, goodDirs);
+    Future<Map<String, DiskErrorInformation> > future = asyncTestDirsExecutor.submit(callable);
+    Map<String, DiskErrorInformation> result = null;
+    // loop is needed for Thread.interrupt()
+    while ( result == null ) {
+      try {
+        result = future.get(timeout, TimeUnit.MILLISECONDS);
+      } catch (InterruptedException ie) {
+        // Restore the interrupted status
+        Thread.currentThread().interrupt();
+      } catch (ExecutionException ee) {
+        throw new YarnRuntimeException(ee);
+      } catch (TimeoutException te) {
+        result = new HashMap<String, DiskErrorInformation>();
+        // we are not sure which directory caused timeout,
+        // so mark all the directories as timedout
+        for (String dir: dirs) {
+          result.put(dir, new DiskErrorInformation(DiskErrorCause.TIMEDOUT, "timedout"));
+        }
+        return result;
+      }
+    }
+    return result;
+  }
+
+  @VisibleForTesting
+  Map<String, DiskErrorInformation> synchronousTestDirs(List<String> dirs,
       Set<String> goodDirs) {
     HashMap<String, DiskErrorInformation> ret =
         new HashMap<String, DiskErrorInformation>();
